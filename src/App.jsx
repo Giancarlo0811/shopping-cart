@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
 import {Routes, Route} from 'react-router-dom'
 import { Container } from 'react-bootstrap'
 import Home from './components/Home'
@@ -14,7 +13,7 @@ function App() {
     <NavBar />
     <Container className='mb-4'>
       <Routes>
-        <Route path='/' element={<Home/>}/>
+        <Route path='/' element= {<Home/>}/>
         <Route path='tienda' element={<Store/>}/>
         <Route path='sobre-nosotros' element={<About/>}/>
       </Routes>
