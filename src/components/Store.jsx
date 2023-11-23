@@ -4,7 +4,7 @@ import { Row, Col } from "react-bootstrap";
 import { json } from "react-router-dom";
 import Product from "./Product";
 
-function Store() {
+function Store({count, addProductsToCart}) {
     const [isLoading, setIsloading] = useState(true);
     const [products, setProducts] = useState(null);
 
@@ -24,8 +24,6 @@ function Store() {
         });
     }, []);
 
-    console.log(products);
-
     if (isLoading) {
         return (
             <div>
@@ -40,7 +38,9 @@ function Store() {
             <Row md={2} xs={1} lg={3} className="g-3">
                 {products.map(product => {
                     return (
-                        <Col key={product.id} className="text-white"><Product {...product}/></Col>
+                    <Col key={product.id} className="text-white">
+                        <Product {...product} count={count} addProductsToCart={addProductsToCart}/>
+                    </Col>
                     )
                 })}
             </Row>

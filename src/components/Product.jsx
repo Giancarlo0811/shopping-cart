@@ -1,7 +1,7 @@
+import { useState } from "react";
 import { Button, Card } from "react-bootstrap";
 
-function Product({id, name, price, image}) {
-    const quantity = 0;
+function Product({name, price, image, count, addProductsToCart}) {
 
     return (
         <Card className="h-100">
@@ -17,13 +17,13 @@ function Product({id, name, price, image}) {
                     <span className="mt-2" style={{fontWeight:'bold'}}>{`Precio: $${price}`}</span>
                 </Card.Title>
                 <div className="mt-auto">
-                   {quantity === 0 ? (
-                    <Button className="w-100">+ Agregar al carrito</Button>
+                   {count === 0 ? (
+                    <Button className="w-100" onClick={addProductsToCart}>+ Agregar al carrito</Button>
                    ) 
                    : <div className="d-flex flex-column align-items-center" style={{gap:'1rem'}}>
                         <div className="d-flex align-items-center justify-content-center" style={{gap:'.5rem'}}>
                             <Button>-</Button>
-                            <span>{quantity} in cart</span>
+                            <span>{count} in cart</span>
                             <Button>+</Button>
                         </div>
                         <div>

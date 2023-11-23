@@ -1,5 +1,6 @@
 import { Container, Navbar, Nav, Button } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
+import ShoppingCart from "./ShoppingCart";
 
 function NavBar() {
     return (
@@ -12,26 +13,28 @@ function NavBar() {
                         <Nav.Link to='tienda' as={NavLink}>Tienda</Nav.Link>
                         <Nav.Link to='sobre-nosotros' as={NavLink}>Sobre Nosotros</Nav.Link>
                     </Nav>
-                    <Button 
-                        variant="outline-primary" 
-                        className="rounded-circle" 
-                        style={{width: '3rem', height: '3rem', position: 'relative'}}
-                    >
-                        <i className="fa-solid fa-cart-shopping"></i>
-                        <div 
-                            className="bg-danger rounded-circle d-flex justify-content-center align-items-center" 
-                            style={{ 
-                            color:'white',
-                            width: '1.5rem', 
-                            height:'1.5rem', 
-                            position:'absolute', 
-                            bottom: 0, 
-                            right:0,
-                            transform: 'translate(25%,25%)'
-                            }}
-                        >3
-                        </div>
-                    </Button>
+                    <NavLink to='carrito'>
+                        <Button 
+                            variant="outline-primary" 
+                            className="rounded-circle" 
+                            style={{width: '3rem', height: '3rem', position: 'relative'}}
+                        >
+                            <i className="fa-solid fa-cart-shopping"></i>
+                            <div 
+                                className="bg-danger rounded-circle d-flex justify-content-center align-items-center" 
+                                style={{ 
+                                color:'white',
+                                width: '1.5rem', 
+                                height:'1.5rem', 
+                                position:'absolute', 
+                                bottom: 0, 
+                                right:0,
+                                transform: 'translate(25%,25%)'
+                                }}
+                                ><span>1</span>
+                            </div>
+                        </Button>
+                    </NavLink>
                 </Navbar.Collapse>
             </Container>
         </Navbar>
