@@ -2,7 +2,7 @@ import { Container, Navbar, Nav, Button } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import ShoppingCart from "./ShoppingCart";
 
-function NavBar() {
+function NavBar({productsInCart}) {
     return (
         <Navbar className="bg-white shadow-sm mb-3" sticky="top" expand="lg">
             <Container>
@@ -31,7 +31,7 @@ function NavBar() {
                                 right:0,
                                 transform: 'translate(25%,25%)'
                                 }}
-                                ><span>1</span>
+                                ><span>{productsInCart.length}</span>
                             </div>
                         </Button>
                     </NavLink>

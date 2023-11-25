@@ -10,9 +10,8 @@ import NavBar from './components/NavBar'
 function App() {
 
   const [productsInCart, setProductsInCart] = useState([]);
-  const [count, setCount] = useState(0);
-
-  function addProductsToCart(e) {
+    
+    function addProductsToCart(e) {
       const productName = e.target.parentNode.previousSibling.children[0].textContent;
       const productPrice = e.target.parentNode.previousSibling.children[1].textContent;
       const productImage = e.target.parentNode.previousSibling.parentNode.previousSibling.src;
@@ -24,25 +23,89 @@ function App() {
 
       if (!name) {
         setProductsInCart([...productsInCart, object]);
-      } else {
-        const newArray = productsInCart.map(product => {
-            return {...product, quantity: product.quantity + 1}
-        })
-        setProductsInCart(newArray);
       }
-  }
+    }
 
-  console.log(productsInCart);
+    function increaseProductQuantity(e) {
+      const productName = e.target.parentNode.parentNode.parentNode.parentNode.children[0].children[0].textContent;
+
+      const newArray = productsInCart.map(product => {
+        if (product.name === productName) {
+          return {...product, quantity: product.quantity + 1}
+        } else {
+          return product;
+        }
+      })
+
+      setProductsInCart(newArray);
+    }
+
+    function decreaseProductQuantity(e) {
+      const productName = e.target.parentNode.parentNode.parentNode.parentNode.children[0].children[0].textContent;
+
+      const newArray = productsInCart.map(product => {
+        if (product.name === productName) {
+          if (product.quantity > 1) {
+            return {...product, quantity: product.quantity - 1}
+          } else {
+            return {...product, quantity: 1}
+          }
+        } else {
+          return product;
+        }
+      })
+
+      setProductsInCart(newArray);
+    }
+
+    function removeProduct(e) {
+      const productName = e.target.parentNode.parentNode.parentNode.parentNode.children[0].children[0].textContent;
+
+      const newArray =  productsInCart.map(product => {
+        if (product.name === productName) {
+          return {...product, quantity: 0}
+        } else {
+          return product;
+        }
+      }).filter(product => product.quantity >= 1);
+
+      setProductsInCart(newArray);
+    }
+
+    function removeProductShoppingCart(e) {
+      const productName = e.target.parentNode.children[0].children[0].textContent
+
+      const newArray =  productsInCart.map(product => {
+        if (product.name === productName) {
+          return {...product, quantity: 0}
+        } else {
+          return product;
+        }
+      }).filter(product => product.quantity >= 1);
+
+      setProductsInCart(newArray);
+    }
+
+    console.log(productsInCart);
 
   return (
     <>
-    <NavBar />
+    <NavBar productsInCart={productsInCart}/>
     <Container className='mb-4'>
       <Routes>
         <Route path='/' element= {<Home/>}/>
-        <Route path='tienda' element={<Store addProductsToCart={addProductsToCart} count={count}/>}/>
+        <Route path='tienda' element={<Store
+                                        addProductsToCart={addProductsToCart}
+                                        productsInCart={productsInCart}
+                                        increaseProductQuantity={increaseProductQuantity}
+                                        decreaseProductQuantity={decreaseProductQuantity}
+                                        removeProduct={removeProduct}
+                                      />}/>
         <Route path='sobre-nosotros' element={<About/>}/>
-        <Route path='carrito' element={<ShoppingCart productsInCart={productsInCart}/>}/>
+        <Route path='carrito' element={<ShoppingCart
+                                        productsInCart={productsInCart}
+                                        removeProductShoppingCart={removeProductShoppingCart}
+                                      />}/>
       </Routes>
     </Container>
     </>

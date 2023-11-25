@@ -4,7 +4,13 @@ import { Row, Col } from "react-bootstrap";
 import { json } from "react-router-dom";
 import Product from "./Product";
 
-function Store({count, addProductsToCart}) {
+function Store({
+    addProductsToCart, 
+    productsInCart, 
+    increaseProductQuantity, 
+    decreaseProductQuantity,
+    removeProduct,
+    }) {
     const [isLoading, setIsloading] = useState(true);
     const [products, setProducts] = useState(null);
 
@@ -39,7 +45,14 @@ function Store({count, addProductsToCart}) {
                 {products.map(product => {
                     return (
                     <Col key={product.id} className="text-white">
-                        <Product {...product} count={count} addProductsToCart={addProductsToCart}/>
+                        <Product 
+                            {...product}
+                            addProductsToCart={addProductsToCart}
+                            productsInCart={productsInCart}
+                            increaseProductQuantity={increaseProductQuantity}
+                            decreaseProductQuantity={decreaseProductQuantity}
+                            removeProduct={removeProduct}
+                        />
                     </Col>
                     )
                 })}

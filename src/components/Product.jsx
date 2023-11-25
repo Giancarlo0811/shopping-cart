@@ -1,7 +1,17 @@
 import { useState } from "react";
 import { Button, Card } from "react-bootstrap";
+import CartButton from "./CartButton";
 
-function Product({name, price, image, count, addProductsToCart}) {
+function Product({
+    name, 
+    price, 
+    image, 
+    addProductsToCart, 
+    productsInCart, 
+    increaseProductQuantity,
+    decreaseProductQuantity,
+    removeProduct,
+    }) {
 
     return (
         <Card className="h-100">
@@ -14,24 +24,15 @@ function Product({name, price, image, count, addProductsToCart}) {
             <Card.Body className="d-flex flex-column">
                 <Card.Title className="d-flex flex-column align-items-center justify-content-center mb-4">
                     <span className="text-center">{name}</span>
-                    <span className="mt-2" style={{fontWeight:'bold'}}>{`Precio: $${price}`}</span>
+                    <span className="mt-2" style={{fontWeight:'bold'}}>${price}</span>
                 </Card.Title>
-                <div className="mt-auto">
-                   {count === 0 ? (
-                    <Button className="w-100" onClick={addProductsToCart}>+ Agregar al carrito</Button>
-                   ) 
-                   : <div className="d-flex flex-column align-items-center" style={{gap:'1rem'}}>
-                        <div className="d-flex align-items-center justify-content-center" style={{gap:'.5rem'}}>
-                            <Button>-</Button>
-                            <span>{count} in cart</span>
-                            <Button>+</Button>
-                        </div>
-                        <div>
-                            <Button variant="danger">Eliminar</Button>
-                        </div>
-                    </div>
-                   }
-                </div>
+                <CartButton 
+                    addProductsToCart={addProductsToCart} 
+                    productsInCart={productsInCart}
+                    increaseProductQuantity={increaseProductQuantity}
+                    decreaseProductQuantity={decreaseProductQuantity}
+                    removeProduct={removeProduct}
+                />
             </Card.Body>
         </Card>
     )
