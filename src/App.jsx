@@ -8,85 +8,118 @@ import ShoppingCart from './components/ShoppingCart'
 import NavBar from './components/NavBar'
 
 function App() {
-
   const [productsInCart, setProductsInCart] = useState([]);
-    
-    function addProductsToCart(e) {
-      const productName = e.target.parentNode.previousSibling.children[0].textContent;
-      const productPrice = e.target.parentNode.previousSibling.children[1].textContent;
-      const productImage = e.target.parentNode.previousSibling.parentNode.previousSibling.src;
-      let productQuantity = 1;
+  const [total, setTotal] = useState(0);
+  
+  function addProductsToCart(e) {
+    const productName = e.target.parentNode.previousSibling.children[0].textContent;
+    const productPrice = e.target.parentNode.previousSibling.children[1].textContent;
+    const productImage = e.target.parentNode.previousSibling.parentNode.previousSibling.src;
+    let productQuantity = 1;
 
-      const object = {name: productName, price: productPrice, image: productImage, quantity: productQuantity};
+    const object = {name: productName, price: productPrice, image: productImage, quantity: productQuantity};
 
-      const name = productsInCart.find(product => product.name === productName);
+    const name = productsInCart.find(product => product.name === productName);
 
-      if (!name) {
-        setProductsInCart([...productsInCart, object]);
+    if (!name) {
+      setProductsInCart([...productsInCart, object]);
+    }
+  }
+
+  function increaseProductQuantity(e) {
+    const productName = e.target.parentNode.parentNode.parentNode.parentNode.children[0].children[0].textContent;
+
+    const newArray = productsInCart.map(product => {
+      if (product.name === productName) {
+        return {...product, quantity: product.quantity + 1}
+      } else {
+        return product;
       }
-    }
+    })
 
-    function increaseProductQuantity(e) {
-      const productName = e.target.parentNode.parentNode.parentNode.parentNode.children[0].children[0].textContent;
+    setProductsInCart(newArray);
+  }
 
-      const newArray = productsInCart.map(product => {
-        if (product.name === productName) {
-          return {...product, quantity: product.quantity + 1}
+  function increaseProductShoppingCart(e) {
+    const productName = e.target.parentNode.parentNode.previousSibling.children[0].textContent;
+
+    const newArray = productsInCart.map(product => {
+      if (product.name === productName) {
+        return {...product, quantity: product.quantity + 1}
+      } else {
+        return product;
+      }
+    })
+
+    setProductsInCart(newArray);
+
+  }
+
+  function decreaseProductQuantity(e) {
+    const productName = e.target.parentNode.parentNode.parentNode.parentNode.children[0].children[0].textContent;
+
+    const newArray = productsInCart.map(product => {
+      if (product.name === productName) {
+        if (product.quantity > 1) {
+          return {...product, quantity: product.quantity - 1}
         } else {
-          return product;
+          return {...product, quantity: 1}
         }
-      })
+      } else {
+        return product;
+      }
+    })
+    
+    setProductsInCart(newArray);
+  }
 
-      setProductsInCart(newArray);
-    }
+  function decreaseProductShoppingCart(e) {
+    const productName = e.target.parentNode.parentNode.previousSibling.children[0].textContent;
 
-    function decreaseProductQuantity(e) {
-      const productName = e.target.parentNode.parentNode.parentNode.parentNode.children[0].children[0].textContent;
-
-      const newArray = productsInCart.map(product => {
-        if (product.name === productName) {
-          if (product.quantity > 1) {
-            return {...product, quantity: product.quantity - 1}
-          } else {
-            return {...product, quantity: 1}
-          }
+    const newArray = productsInCart.map(product => {
+      if (product.name === productName) {
+        if (product.quantity > 1) {
+          return {...product, quantity: product.quantity - 1}
         } else {
-          return product;
+          return {...product, quantity: 1}
         }
-      })
+      } else {
+        return product;
+      }
+    })
+    
+    setProductsInCart(newArray);
+  }
 
-      setProductsInCart(newArray);
-    }
+  function removeProduct(e) {
+    const productName = e.target.parentNode.parentNode.parentNode.parentNode.children[0].children[0].textContent;
 
-    function removeProduct(e) {
-      const productName = e.target.parentNode.parentNode.parentNode.parentNode.children[0].children[0].textContent;
+    const newArray =  productsInCart.map(product => {
+      if (product.name === productName) {
+        return {...product, quantity: 0}
+      } else {
+        return product;
+      }
+    }).filter(product => product.quantity >= 1);
 
-      const newArray =  productsInCart.map(product => {
-        if (product.name === productName) {
-          return {...product, quantity: 0}
-        } else {
-          return product;
-        }
-      }).filter(product => product.quantity >= 1);
+    setProductsInCart(newArray);
+  }
 
-      setProductsInCart(newArray);
-    }
+  function removeProductShoppingCart(e) {
+    const productName = e.target.parentNode.previousSibling.children[0].textContent
+    
+    const newArray =  productsInCart.map(product => {
+      if (product.name === productName) {
+        return {...product, quantity: 0}
+      } else {
+        return product;
+      }
+    }).filter(product => product.quantity >= 1);
 
-    function removeProductShoppingCart(e) {
-      const productName = e.target.parentNode.children[0].children[0].textContent
+    setProductsInCart(newArray);
+  }
 
-      const newArray =  productsInCart.map(product => {
-        if (product.name === productName) {
-          return {...product, quantity: 0}
-        } else {
-          return product;
-        }
-      }).filter(product => product.quantity >= 1);
-
-      setProductsInCart(newArray);
-    }
-
-    console.log(productsInCart);
+  console.log(productsInCart);
 
   return (
     <>
@@ -105,6 +138,9 @@ function App() {
         <Route path='carrito' element={<ShoppingCart
                                         productsInCart={productsInCart}
                                         removeProductShoppingCart={removeProductShoppingCart}
+                                        increaseProductShoppingCart={increaseProductShoppingCart}
+                                        decreaseProductShoppingCart={decreaseProductShoppingCart}
+                                        total={total}
                                       />}/>
       </Routes>
     </Container>

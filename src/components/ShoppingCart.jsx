@@ -1,13 +1,24 @@
 import { Row, Col, Card, Button } from "react-bootstrap";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ShoppingCartRemoveBtn from "./ShoppingCartRemoveBtn";
+import ShoppingCartDecreaseBtn from "./ShoppingCartDecreaseBtn";
+import ShoppingCartIncreaseBtn from "./ShoppingCartIncreaseBtn";
 
-function ShoppingCart({productsInCart, removeProductShoppingCart}) {
-    console.log(productsInCart);
+function ShoppingCart({
+    productsInCart, 
+    removeProductShoppingCart, 
+    total, 
+    increaseProductShoppingCart,
+    decreaseProductShoppingCart
+    }) {
 
     return  (
        <>
-        <Row md={1} xs={1} lg={1} className="g-3">
+       {productsInCart.length === 0 &&
+            <h1 className="text-white text-center">Carrito vacío</h1>
+       }
+        {productsInCart.length >= 1 &&
+            <Row md={1} xs={1} lg={1} className="g-3">
             {productsInCart.map(product => {
                 return (
                         <Card 
@@ -36,12 +47,20 @@ function ShoppingCart({productsInCart, removeProductShoppingCart}) {
                                         {`Precio: $${Number(product.price.replace('$','')) * product.quantity}`}
                                     </span>
                                 </Card.Title>
-                               <ShoppingCartRemoveBtn removeProductShoppingCart={removeProductShoppingCart}/>
+                               <div className="d-flex flex-column">
+                                    <div className="d-flex justify-content-center align-items-center" style={{gap:'1rem'}}>
+                                        <ShoppingCartDecreaseBtn decreaseProductShoppingCart={decreaseProductShoppingCart}/>
+                                        <ShoppingCartIncreaseBtn increaseProductShoppingCart={increaseProductShoppingCart}/>
+                                    </div>
+                                    <ShoppingCartRemoveBtn removeProductShoppingCart={removeProductShoppingCart}/>
+                               </div>
                             </Card.Body>
                         </Card>
                 )
             })}
+            <h1 className="text-white">Total: {`$${total}`}</h1>
         </Row>
+        }
        </>
     )
 }

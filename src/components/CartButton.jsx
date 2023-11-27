@@ -12,19 +12,39 @@ function CartButton({
     const [isShown, setIsShown] = useState(false);
     const [quantity, setQuantity] = useState(1);
 
-    function toggle() {
+    function toggle(e) {
         setIsShown(current => !current);
+        const productName = e.target.parentNode.previousSibling.children[0].textContent;
+
+        for (let product of productsInCart) {
+            if(product.name === productName) {
+                setQuantity(product.quantity);
+            }
+        }
     }
 
-    function increaseQuantity() {
-        setQuantity(quantity + 1);
+    function increaseQuantity(e) {
+        const productName = e.target.parentNode.parentNode.parentNode.previousSibling.children[0].textContent;
+
+        for (let product of productsInCart) {
+            if(product.name === productName) {
+                setQuantity(product.quantity + 1);
+            }
+        }
     }
 
-    function decreaseQuantity() {
-        if (quantity > 1) {
-            setQuantity(quantity - 1);
-        } else {
-            setQuantity(1);
+    function decreaseQuantity(e) {
+        const productName = e.target.parentNode.parentNode.parentNode.previousSibling.children[0].textContent;
+        
+        for (let product of productsInCart) {
+            if(product.name === productName) {
+                if (quantity > 1) {
+                    setQuantity(quantity - 1);
+                }
+                else {
+                    setQuantity(1);
+                }
+            }
         }
     }
 
@@ -38,7 +58,7 @@ function CartButton({
             {!isShown && (
                     <Button className="w-100" onClick={(e) => {
                         addProductsToCart(e);
-                        toggle();
+                        toggle(e)
                     }}>+ Agregar al Carrito</Button>
             )}
             {isShown && (
@@ -46,18 +66,18 @@ function CartButton({
                     <div className="d-flex align-items-center justify-content-center" style={{gap:'.5rem'}}>
                         <Button onClick={(e) => {
                             decreaseProductQuantity(e);
-                            decreaseQuantity();
+                            decreaseQuantity(e);
                         }}>-</Button>
                         <span>{quantity} en el Carrito</span>
                         <Button onClick={(e) => {
                             increaseProductQuantity(e);
-                            increaseQuantity();
+                            increaseQuantity(e);
                         }}>+</Button>
                     </div>
                     <div>
                         <Button variant="danger" onClick={(e) => {
                             removeProduct(e);
-                            toggle();
+                            toggle(e);
                             resetQuantity();
                         }}>Eliminar</Button>
                     </div>

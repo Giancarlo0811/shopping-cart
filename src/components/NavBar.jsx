@@ -13,7 +13,8 @@ function NavBar({productsInCart}) {
                         <Nav.Link to='tienda' as={NavLink}>Tienda</Nav.Link>
                         <Nav.Link to='sobre-nosotros' as={NavLink}>Sobre Nosotros</Nav.Link>
                     </Nav>
-                    <NavLink to='carrito'>
+                </Navbar.Collapse>
+                <NavLink to='carrito'>
                         <Button 
                             variant="outline-primary" 
                             className="rounded-circle" 
@@ -31,11 +32,10 @@ function NavBar({productsInCart}) {
                                 right:0,
                                 transform: 'translate(25%,25%)'
                                 }}
-                                ><span>{productsInCart.length}</span>
+                            ><span>{productsInCart.length}</span>
                             </div>
                         </Button>
                     </NavLink>
-                </Navbar.Collapse>
             </Container>
         </Navbar>
     )
