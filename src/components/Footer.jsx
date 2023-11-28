@@ -8,7 +8,8 @@ function Footer() {
             height:'3rem',
             position:'fixed',
             left:'0',
-            bottom:'0'
+            bottom:'0',
+            zIndex:'5'
             }}
         >
             <p>giancarlo0811 
