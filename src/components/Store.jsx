@@ -40,7 +40,7 @@ function Store({
 
     return (
         <>
-            <h1 className="text-center mb-5 mt-5">Productos</h1>
+            <h1 className="text-center mt-3 mb-2">Productos</h1>
             <Row md={2} xs={1} lg={3} className="g-3">
                 {products.map(product => {
                     return (

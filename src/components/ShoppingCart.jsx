@@ -1,5 +1,6 @@
 import { Row, Col, Card, Button } from "react-bootstrap";
 import { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
 import ShoppingCartRemoveBtn from "./ShoppingCartRemoveBtn";
 import ShoppingCartDecreaseBtn from "./ShoppingCartDecreaseBtn";
 import ShoppingCartIncreaseBtn from "./ShoppingCartIncreaseBtn";
@@ -27,10 +28,10 @@ function ShoppingCart({
                                 variant="top" 
                                 src={product.image} 
                                 height="200px"
-                                width="50%"
+                                width="30%"
                                 style={{objectFit:'contain'}}
                             />
-                            <Card.Body className="d-flex flex-column w-50">
+                            <Card.Body className="d-flex flex-column" style={{width:'70%'}}>
                                 <Card.Title className="d-flex flex-column align-items-center justify-content-center mb-4">
                                     <span 
                                         className="text-center">{product.name}
@@ -38,7 +39,7 @@ function ShoppingCart({
                                     <span 
                                         className="mt-2 text-center" 
                                         style={{fontWeight:'bold'}}>
-                                            {`${product.price}`}
+                                            {`Precio: ${product.price}`}
                                     </span>
                                     <span 
                                         className="mt-2 text-center" 
@@ -65,10 +66,13 @@ function ShoppingCart({
                         </Card>
                 )
             })}
-            <h1>
-                {`Total: $${(productsInCart.reduce((accumulator, product) => 
+           <div className="mb-5">
+                <h1>
+                    {`Total: $${(productsInCart.reduce((accumulator, product) => 
                     accumulator + product.price.replace('$','') * product.quantity, 0)).toFixed(2)}`}
-            </h1>
+                </h1>
+                <NavLink to='/tienda'><Button>Seguir Comprando</Button></NavLink>
+           </div>
         </Row>
         }
        </>

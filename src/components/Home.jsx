@@ -32,7 +32,7 @@ function Home() {
             style={{
                 backgroundColor:'#121212',
                 borderRadius:'5px',
-                boxShadow:'rgba(0, 0, 0, 0.35) 0px 5px 15px'
+                boxShadow:'rgba(0, 0, 0, 0.35) 0px 5px 15px',
             }}
         >
             {slides.map(slide => (
@@ -42,7 +42,7 @@ function Home() {
                     backgroundRepeat:'no-repeat',
                     backgroundSize:'contain',
                     backgroundPosition:'center',
-                    height:'80vh',
+                    height:'70vh',
                     }}>
                     <Carousel.Caption>
                         <h3>{slide.name}</h3>

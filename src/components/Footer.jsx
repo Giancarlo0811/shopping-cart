@@ -1,6 +1,15 @@
 function Footer() {
     return (
-        <div className="bg-light w-100 d-flex align-items-center justify-content-center fixed-bottom" 
+        <div className="bg-white" style={{
+            width:'100%', 
+            display:'flex', 
+            alignItems:'center',
+            justifyContent:'center',
+            height:'3rem',
+            position:'fixed',
+            left:'0',
+            bottom:'0'
+            }}
         >
             <p>giancarlo0811 
                 <a href="https://github.com/Giancarlo0811" target="blank">

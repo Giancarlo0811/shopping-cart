@@ -131,7 +131,7 @@ function App() {
   return (
     <>
     <NavBar productsInCart={productsInCart}/>
-    <Container className='mb-5'>
+    <Container style={{marginBottom:'6rem'}}>
       <Routes>
         <Route path='/' element= {<Home/>}/>
         <Route path='tienda' element={<Store
