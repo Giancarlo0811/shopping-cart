@@ -22,7 +22,7 @@ function ShoppingCart({
                 return (
                         <Card 
                             key={product.name} 
-                            className="h-100 d-flex flex-row align-items-center justify-content-center">
+                            className="h-100 d-flex align-items-center justify-content-center flex-sm-row">
                             <Card.Img 
                                 variant="top" 
                                 src={product.image} 
@@ -36,17 +36,17 @@ function ShoppingCart({
                                         className="text-center">{product.name}
                                     </span>
                                     <span 
-                                        className="mt-2" 
+                                        className="mt-2 text-center" 
                                         style={{fontWeight:'bold'}}>
                                             {`${product.price}`}
                                     </span>
                                     <span 
-                                        className="mt-2" 
+                                        className="mt-2 text-center" 
                                         style={{fontWeight:'bold'}}>
                                             {`Cantidad: ${product.quantity}`}
                                     </span>
                                     <span 
-                                        className="mt-2" 
+                                        className="mt-2 text-center" 
                                         style={{fontWeight:'bold'}}>
                                         {
                                         `Subtotal: $${(Number(product.price.replace('$','')) * product.quantity)
