@@ -7,15 +7,14 @@ import ShoppingCartIncreaseBtn from "./ShoppingCartIncreaseBtn";
 function ShoppingCart({
     productsInCart, 
     removeProductShoppingCart, 
-    total, 
     increaseProductShoppingCart,
-    decreaseProductShoppingCart
+    decreaseProductShoppingCart,
     }) {
 
     return  (
        <>
        {productsInCart.length === 0 &&
-            <h1 className="text-white text-center">Carrito vacío</h1>
+            <h1 className="text-center">Carrito vacío</h1>
        }
         {productsInCart.length >= 1 &&
             <Row md={1} xs={1} lg={1} className="g-3">
@@ -39,12 +38,19 @@ function ShoppingCart({
                                     <span 
                                         className="mt-2" 
                                         style={{fontWeight:'bold'}}>
+                                            {`${product.price}`}
+                                    </span>
+                                    <span 
+                                        className="mt-2" 
+                                        style={{fontWeight:'bold'}}>
                                             {`Cantidad: ${product.quantity}`}
                                     </span>
                                     <span 
                                         className="mt-2" 
                                         style={{fontWeight:'bold'}}>
-                                        {`Precio: $${Number(product.price.replace('$','')) * product.quantity}`}
+                                        {
+                                        `Subtotal: $${(Number(product.price.replace('$','')) * product.quantity)
+                                                        .toFixed(2)}`}
                                     </span>
                                 </Card.Title>
                                <div className="d-flex flex-column">
@@ -58,7 +64,10 @@ function ShoppingCart({
                         </Card>
                 )
             })}
-            <h1 className="text-white">Total: {`$${total}`}</h1>
+            <h1>
+                {`Total: $${(productsInCart.reduce((accumulator, product) => 
+                    accumulator + product.price.replace('$','') * product.quantity, 0)).toFixed(2)}`}
+            </h1>
         </Row>
         }
        </>

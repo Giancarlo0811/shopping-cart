@@ -9,7 +9,6 @@ import NavBar from './components/NavBar'
 
 function App() {
   const [productsInCart, setProductsInCart] = useState([]);
-  const [total, setTotal] = useState(0);
   
   function addProductsToCart(e) {
     const productName = e.target.parentNode.previousSibling.children[0].textContent;
@@ -140,7 +139,6 @@ function App() {
                                         removeProductShoppingCart={removeProductShoppingCart}
                                         increaseProductShoppingCart={increaseProductShoppingCart}
                                         decreaseProductShoppingCart={decreaseProductShoppingCart}
-                                        total={total}
                                       />}/>
       </Routes>
     </Container>

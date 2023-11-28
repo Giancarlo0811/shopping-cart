@@ -23,12 +23,12 @@ function Home() {
     return (
         <>
          <div className='text-center mb-3'>
-            <h1 className='text-white'>Los Mejores Productos Electrónicos</h1>
+            <h1>Los Mejores Productos Electrónicos</h1>
             <NavLink to='tienda'><Button>Tienda</Button></NavLink>
         </div>
         <Carousel 
             autoPlay={true}
-            interval={4000}
+            interval={2000}
             style={{
                 backgroundColor:'#121212',
                 borderRadius:'5px',

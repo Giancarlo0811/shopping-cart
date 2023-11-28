@@ -21,7 +21,7 @@ function Store({
             const productsArray = data.map(data => ({
                 id: data.id,
                 name: data.title,
-                price: data.price,
+                price: data.price.toFixed(2),
                 image: data.image
             }));
 
@@ -33,14 +33,14 @@ function Store({
     if (isLoading) {
         return (
             <div>
-                <h1 className="text-white">Cargando...</h1>
+                <h1>Cargando productos...</h1>
             </div>
         )
     }
 
     return (
         <>
-            <h1 className="text-white text-center mb-5 mt-5">Productos</h1>
+            <h1 className="text-center mb-5 mt-5">Productos</h1>
             <Row md={2} xs={1} lg={3} className="g-3">
                 {products.map(product => {
                     return (
