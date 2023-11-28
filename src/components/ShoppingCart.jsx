@@ -56,6 +56,7 @@ function ShoppingCart({
                                <div className="d-flex flex-column">
                                     <div className="d-flex justify-content-center align-items-center" style={{gap:'1rem'}}>
                                         <ShoppingCartDecreaseBtn decreaseProductShoppingCart={decreaseProductShoppingCart}/>
+                                        <span>Cantidad</span>
                                         <ShoppingCartIncreaseBtn increaseProductShoppingCart={increaseProductShoppingCart}/>
                                     </div>
                                     <ShoppingCartRemoveBtn removeProductShoppingCart={removeProductShoppingCart}/>
