@@ -1,8 +1,17 @@
-# React + Vite
+# Carrito de compras
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+![alt text](./img1.png)
+
+[alt text](./img2.png)
+
+Aplicación  de una tienda falsa de productos electrónicos con React.
+
+Se pueden agregar productos al carrito, aumentar/disminuir su cantidad y eliminarlos.
+
+El carrito muestra todos los productos agregados y el total.
+
+La aplicación utiliza React Router para navegar entre páginas y localStorage para almacenar el carrito.
+
+Los productos son obtenidos de la API FakeStore https://fakestoreapi.com/

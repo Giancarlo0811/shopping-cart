@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {Routes, Route} from 'react-router-dom'
 import { Container } from 'react-bootstrap'
 import Home from './components/Home'
@@ -8,8 +8,14 @@ import ShoppingCart from './components/ShoppingCart'
 import NavBar from './components/NavBar'
 
 function App() {
-  const [productsInCart, setProductsInCart] = useState([]);
-  
+  const [productsInCart, setProductsInCart] = useState(() => {
+    return JSON.parse(localStorage.getItem('ProductsInCart')) || []
+  });
+
+  useEffect(() => {
+    localStorage.setItem('ProductsInCart', JSON.stringify(productsInCart));
+  },[productsInCart]);
+
   function addProductsToCart(e) {
     const productName = e.target.parentNode.previousSibling.children[0].textContent;
     const productPrice = e.target.parentNode.previousSibling.children[1].textContent;
@@ -119,6 +125,7 @@ function App() {
   }
 
   console.log(productsInCart);
+  console.log(localStorage)
 
   return (
     <>
