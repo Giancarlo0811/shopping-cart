@@ -1,6 +1,5 @@
 import { Container, Navbar, Nav, Button } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
-import ShoppingCart from "./ShoppingCart";
 
 function NavBar({productsInCart}) {
     return (

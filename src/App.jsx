@@ -6,6 +6,7 @@ import Store from './components/Store'
 import About from './components/About'
 import ShoppingCart from './components/ShoppingCart'
 import NavBar from './components/NavBar'
+import Footer from './components/Footer'
 
 function App() {
   const [productsInCart, setProductsInCart] = useState(() => {
@@ -130,7 +131,7 @@ function App() {
   return (
     <>
     <NavBar productsInCart={productsInCart}/>
-    <Container className='mb-4'>
+    <Container className='mb-5'>
       <Routes>
         <Route path='/' element= {<Home/>}/>
         <Route path='tienda' element={<Store
@@ -149,6 +150,7 @@ function App() {
                                       />}/>
       </Routes>
     </Container>
+    <Footer />
     </>
   )
 }

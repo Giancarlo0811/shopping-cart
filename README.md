@@ -1,6 +1,6 @@
 # Carrito de compras
 
-https://tienda-productos-electronicos.netlify.app/
+
 
 ![alt text](./img1.png)
 
