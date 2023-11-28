@@ -10,17 +10,18 @@ function NavBar({productsInCart}) {
                     <Nav className="me-auto">
                         <Nav.Link to='/' as={NavLink}>Inicio</Nav.Link>
                         <Nav.Link to='tienda' as={NavLink}>Tienda</Nav.Link>
+                        <Nav.Link to='carrito' as={NavLink}>Carrito</Nav.Link>
                         <Nav.Link to='sobre-nosotros' as={NavLink}>Sobre Nosotros</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
                 <NavLink to='carrito'>
-                        <Button 
+                    <Button 
                             variant="outline-primary" 
                             className="rounded-circle" 
                             style={{width: '3rem', height: '3rem', position: 'relative'}}
-                        >
-                            <i className="fa-solid fa-cart-shopping"></i>
-                            <div 
+                            >
+                                <i className="fa-solid fa-cart-shopping"></i>
+                                <div 
                                 className="bg-danger rounded-circle d-flex justify-content-center align-items-center" 
                                 style={{ 
                                 color:'white',
@@ -31,10 +32,10 @@ function NavBar({productsInCart}) {
                                 right:0,
                                 transform: 'translate(25%,25%)'
                                 }}
-                            ><span>{productsInCart.length}</span>
-                            </div>
-                        </Button>
-                    </NavLink>
+                                    ><span>{productsInCart.length}</span>
+                                </div>
+                    </Button>
+                </NavLink>
             </Container>
         </Navbar>
     )
